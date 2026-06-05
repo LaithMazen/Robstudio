@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Free Assets – RBLX//STUDIO</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Rajdhani:wght@300;400;500;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --bg-deep:    #020818;
+      --bg-mid:     #050f2e;
+      --bg-panel:   #080f1f;
+      --blue-core:  #1a6bff;
+      --blue-glow:  #4d9aff;
+      --blue-dim:   #0d3a8a;
+      --cyan:       #00d4ff;
+      --cyan-dim:   #006d82;
+      --accent:     #00ffcc;
+      --text-main:  #e8f4ff;
+      --text-muted: #6a8db0;
+      --text-dim:   #3a5a7a;
+      --border:     rgba(26,107,255,0.2);
+      --border-hi:  rgba(0,212,255,0.5);
+      --glass:      rgba(8,15,31,0.85);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Rajdhani', sans-serif;
+      background: var(--bg-deep);
+      color: var(--text-main);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed; inset: 0;
+      background-image:
+        linear-gradient(rgba(26,107,255,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(26,107,255,0.04) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none; z-index: 0;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 40px; height: 70px;
+      background: rgba(2,8,24,0.92);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      font-family: 'Orbitron', sans-serif;
+      font-weight: 900; font-size: 1.1rem; letter-spacing: 2px;
+      background: linear-gradient(135deg, var(--blue-glow), var(--cyan));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text; text-decoration: none;
+    }
+
+    .nav-links { display: flex; gap: 32px; list-style: none; }
+
+    .nav-links a {
+      font-family: 'Rajdhani', sans-serif; font-weight: 600;
+      font-size: 0.9rem; letter-spacing: 2px; text-transform: uppercase;
+      color: var(--text-muted); text-decoration: none; transition: color 0.3s;
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: ''; position: absolute; bottom: -4px; left: 0; right: 0;
+      height: 1px; background: var(--cyan);
+      transform: scaleX(0); transition: transform 0.3s;
+    }
+
+    .nav-links a:hover { color: var(--cyan); }
+    .nav-links a:hover::after { transform: scaleX(1); }
+    .nav-links a.active { color: var(--cyan); }
+    .nav-links a.active::after { transform: scaleX(1); }
+
+    .nav-auth { display: flex; gap: 12px; align-items: center; }
+
+    .btn-ghost {
+      background: transparent; border: 1px solid var(--border-hi); color: var(--cyan);
+      font-family: 'Rajdhani', sans-serif; font-weight: 600; font-size: 0.85rem;
+      letter-spacing: 2px; text-transform: uppercase; padding: 8px 20px; cursor: pointer;
+      transition: all 0.3s;
+      clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+    }
+
+    .btn-ghost:hover { background: rgba(0,212,255,0.1); box-shadow: 0 0 20px rgba(0,212,255,0.2); }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--blue-core), var(--cyan-dim)); border: none;
+      color: white; font-family: 'Rajdhani', sans-serif; font-weight: 700;
+      font-size: 0.85rem; letter-spacing: 2px; text-transform: uppercase;
+      padding: 9px 22px; cursor: pointer; transition: all 0.3s;
+      clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+    }
+
+    .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 0 30px rgba(26,107,255,0.5); }
+
+    #userDisplay { font-size: 0.85rem; color: var(--accent); letter-spacing: 1px; display: none; }
+    #logoutBtn { display: none; }
+
+    /* ── PAGE HEADER ── */
+    .page-header {
+      position: relative; z-index: 1;
+      padding: 120px 40px 60px;
+      text-align: center;
+    }
+
+    .page-header .label {
+      font-family: 'Orbitron', sans-serif; font-size: 0.65rem;
+      letter-spacing: 5px; text-transform: uppercase; color: var(--cyan);
+      margin-bottom: 12px;
+    }
+
+    .page-header h1 {
+      font-family: 'Orbitron', sans-serif; font-weight: 900;
+      font-size: clamp(2rem, 5vw, 3.8rem); line-height: 1.1;
+      background: linear-gradient(135deg, var(--text-main) 40%, var(--cyan));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text; margin-bottom: 16px;
+    }
+
+    .page-header p {
+      color: var(--text-muted); font-size: 1.05rem;
+      max-width: 500px; margin: 0 auto; line-height: 1.7;
+    }
+
+    /* ── SEARCH & FILTER ── */
+    .controls {
+      position: relative; z-index: 1;
+      max-width: 1100px; margin: 0 auto;
+      padding: 0 40px 40px;
+      display: flex; gap: 16px; flex-wrap: wrap; align-items: center;
+    }
+
+    .search-wrap {
+      flex: 1; min-width: 260px;
+      position: relative;
+    }
+
+    .search-wrap svg {
+      position: absolute; left: 16px; top: 50%; transform: translateY(-50%);
+      color: var(--text-muted); width: 18px; height: 18px; pointer-events: none;
+    }
+
+    #searchInput {
+      width: 100%; background: var(--glass); border: 1px solid var(--border);
+      color: var(--text-main); font-family: 'Rajdhani', sans-serif;
+      font-size: 1rem; padding: 14px 16px 14px 48px; outline: none;
+      transition: border-color 0.3s; backdrop-filter: blur(10px);
+    }
+
+    #searchInput:focus { border-color: var(--cyan); }
+    #searchInput::placeholder { color: var(--text-dim); }
+
+    .filter-btns { display: flex; gap: 8px; flex-wrap: wrap; }
+
+    .filter-btn {
+      background: transparent; border: 1px solid var(--border);
+      color: var(--text-muted); font-family: 'Rajdhani', sans-serif;
+      font-weight: 600; font-size: 0.8rem; letter-spacing: 2px;
+      text-transform: uppercase; padding: 10px 18px; cursor: pointer;
+      transition: all 0.3s;
+      clip-path: polygon(6px 0%, 100% 0%, calc(100% - 6px) 100%, 0% 100%);
+    }
+
+    .filter-btn:hover { border-color: var(--border-hi); color: var(--text-main); }
+    .filter-btn.active { border-color: var(--cyan); color: var(--cyan); background: rgba(0,212,255,0.07); }
+
+    /* ── ASSETS GRID ── */
+    .assets-section {
+      position: relative; z-index: 1;
+      max-width: 1100px; margin: 0 auto;
+      padding: 0 40px 100px;
+    }
+
+    #assetsGrid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 24px;
+    }
+
+    .asset-card {
+      background: var(--glass); border: 1px solid var(--border);
+      backdrop-filter: blur(10px);
+      transition: all 0.35s; overflow: hidden;
+      position: relative;
+      animation: fadeInUp 0.5s ease both;
+    }
+
+    .asset-card:hover {
+      border-color: var(--border-hi);
+      transform: translateY(-4px);
+      box-shadow: 0 16px 50px rgba(26,107,255,0.15);
+    }
+
+    .asset-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, var(--blue-core), var(--cyan));
+      transform: scaleX(0); transform-origin: left;
+      transition: transform 0.4s;
+    }
+
+    .asset-card:hover::before { transform: scaleX(1); }
+
+    /* Media area */
+    .asset-media {
+      width: 100%; height: 200px;
+      background: var(--bg-mid);
+      display: flex; align-items: center; justify-content: center;
+      overflow: hidden; position: relative;
+    }
+
+    .asset-media img,
+    .asset-media video {
+      width: 100%; height: 100%; object-fit: cover;
+    }
+
+    .asset-media .no-media {
+      color: var(--text-dim); font-size: 0.8rem;
+      letter-spacing: 2px; text-transform: uppercase;
+    }
+
+    .asset-media .media-badge {
+      position: absolute; top: 10px; right: 10px;
+      background: rgba(2,8,24,0.85); border: 1px solid var(--border);
+      color: var(--cyan); font-size: 0.65rem; letter-spacing: 2px;
+      text-transform: uppercase; padding: 3px 10px;
+    }
+
+    /* Body */
+    .asset-body { padding: 24px; }
+
+    .asset-category {
+      font-size: 0.65rem; letter-spacing: 3px; text-transform: uppercase;
+      color: var(--blue-glow); margin-bottom: 8px;
+    }
+
+    .asset-title {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 0.95rem; font-weight: 700;
+      color: var(--text-main); margin-bottom: 12px; line-height: 1.3;
+    }
+
+    .asset-desc {
+      color: var(--text-muted); font-size: 0.9rem;
+      line-height: 1.6; margin-bottom: 20px;
+    }
+
+    .asset-footer {
+      display: flex; align-items: center; justify-content: space-between;
+      padding-top: 16px; border-top: 1px solid var(--border);
+    }
+
+    .asset-meta {
+      font-size: 0.75rem; color: var(--text-dim); letter-spacing: 1px;
+    }
+
+    .download-btn {
+      display: flex; align-items: center; gap: 8px;
+      background: linear-gradient(135deg, var(--blue-core), var(--blue-dim));
+      border: none; color: white;
+      font-family: 'Rajdhani', sans-serif; font-weight: 700;
+      font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase;
+      padding: 10px 20px; cursor: pointer; transition: all 0.3s;
+      clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+      text-decoration: none;
+    }
+
+    .download-btn:hover {
+      background: linear-gradient(135deg, var(--blue-glow), var(--blue-core));
+      box-shadow: 0 0 24px rgba(26,107,255,0.5);
+      transform: translateY(-1px);
+    }
+
+    .download-btn svg { width: 14px; height: 14px; }
+
+    /* Empty state */
+    .empty-state {
+      text-align: center; padding: 80px 20px;
+      color: var(--text-muted); grid-column: 1 / -1;
+    }
+
+    .empty-state svg {
+      width: 60px; height: 60px; color: var(--text-dim);
+      margin-bottom: 20px;
+    }
+
+    .empty-state h3 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1rem; letter-spacing: 2px; margin-bottom: 8px;
+    }
+
+    /* Loading spinner */
+    .loading {
+      text-align: center; padding: 80px; grid-column: 1 / -1;
+    }
+
+    .spinner {
+      width: 40px; height: 40px;
+      border: 2px solid var(--border);
+      border-top-color: var(--cyan);
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+      margin: 0 auto 20px;
+    }
+
+    @keyframes spin { to { transform: rotate(360deg); } }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Auth modal */
+    .modal-overlay {
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,0.85); backdrop-filter: blur(8px);
+      z-index: 2000; display: flex; align-items: center; justify-content: center;
+      opacity: 0; pointer-events: none; transition: opacity 0.3s;
+    }
+
+    .modal-overlay.open { opacity: 1; pointer-events: all; }
+
+    .modal {
+      background: var(--bg-mid); border: 1px solid var(--border-hi);
+      width: 420px; max-width: 90vw; padding: 48px 40px; position: relative;
+      transform: translateY(20px); transition: transform 0.3s;
+    }
+
+    .modal-overlay.open .modal { transform: translateY(0); }
+
+    .modal-close {
+      position: absolute; top: 16px; right: 20px;
+      background: transparent; border: none; color: var(--text-muted);
+      font-size: 1.4rem; cursor: pointer;
+    }
+
+    .modal h2 {
+      font-family: 'Orbitron', sans-serif; font-size: 1.1rem;
+      letter-spacing: 3px; color: var(--text-main); margin-bottom: 8px;
+    }
+
+    .modal-tabs { display: flex; border-bottom: 1px solid var(--border); margin-bottom: 32px; }
+
+    .modal-tab {
+      background: transparent; border: none; border-bottom: 2px solid transparent;
+      color: var(--text-muted); font-family: 'Rajdhani', sans-serif; font-weight: 600;
+      font-size: 0.85rem; letter-spacing: 2px; text-transform: uppercase;
+      padding: 10px 20px; cursor: pointer; transition: all 0.3s; margin-bottom: -1px;
+    }
+
+    .modal-tab.active { color: var(--cyan); border-bottom-color: var(--cyan); }
+
+    .form-group { margin-bottom: 20px; }
+
+    .form-group label {
+      display: block; font-size: 0.75rem; letter-spacing: 2px;
+      text-transform: uppercase; color: var(--text-muted); margin-bottom: 8px;
+    }
+
+    .form-group input {
+      width: 100%; background: rgba(26,107,255,0.05); border: 1px solid var(--border);
+      color: var(--text-main); font-family: 'Rajdhani', sans-serif;
+      font-size: 1rem; padding: 12px 16px; outline: none; transition: border-color 0.3s;
+    }
+
+    .form-group input:focus { border-color: var(--cyan); }
+
+    .form-submit {
+      width: 100%; background: linear-gradient(135deg, var(--blue-core), var(--blue-glow));
+      border: none; color: white; font-family: 'Rajdhani', sans-serif; font-weight: 700;
+      font-size: 1rem; letter-spacing: 3px; text-transform: uppercase;
+      padding: 14px; cursor: pointer; margin-top: 8px; transition: all 0.3s;
+    }
+
+    .form-submit:hover { box-shadow: 0 0 30px rgba(26,107,255,0.5); transform: translateY(-1px); }
+
+    .form-error { color: #ff6b6b; font-size: 0.85rem; margin-top: 12px; text-align: center; min-height: 20px; }
+
+    footer {
+      position: relative; z-index: 1; border-top: 1px solid var(--border);
+      padding: 40px; text-align: center; color: var(--text-dim);
+      font-size: 0.85rem; letter-spacing: 1px;
+    }
+
+    footer a { color: var(--cyan); text-decoration: none; }
+
+    @media (max-width: 768px) {
+      nav { padding: 0 20px; }
+      .nav-links { display: none; }
+      .page-header { padding: 100px 20px 40px; }
+      .controls { padding: 0 20px 30px; }
+      .assets-section { padding: 0 20px 80px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a class="nav-logo" href="index.html">RBLX//STUDIO</a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="assets.html" class="active">Free Assets</a></li>
+      <li><a href="https://youtube.com" target="_blank">YouTube</a></li>
+      <li><a href="https://discord.com" target="_blank">Discord</a></li>
+    </ul>
+    <div class="nav-auth">
+      <span id="userDisplay"></span>
+      <button class="btn-ghost" id="loginBtn">Sign In</button>
+      <button class="btn-primary" id="signupBtn">Sign Up</button>
+      <button class="btn-ghost" id="logoutBtn">Logout</button>
+    </div>
+  </nav>
+
+  <!-- HEADER -->
+  <div class="page-header">
+    <div class="label">Open Source</div>
+    <h1>FREE ASSETS & MODELS</h1>
+    <p>Download free Roblox Studio assets, scripts, UI kits, and more. All free, forever.</p>
+  </div>
+
+  <!-- CONTROLS -->
+  <div class="controls">
+    <div class="search-wrap">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+      </svg>
+      <input type="text" id="searchInput" placeholder="Search assets, models, scripts…"/>
+    </div>
+    <div class="filter-btns">
+      <button class="filter-btn active" data-cat="all">All</button>
+      <button class="filter-btn" data-cat="script">Scripts</button>
+      <button class="filter-btn" data-cat="model">Models</button>
+      <button class="filter-btn" data-cat="ui">UI</button>
+      <button class="filter-btn" data-cat="animation">Animation</button>
+      <button class="filter-btn" data-cat="other">Other</button>
+    </div>
+  </div>
+
+  <!-- GRID -->
+  <section class="assets-section">
+    <div id="assetsGrid">
+      <div class="loading">
+        <div class="spinner"></div>
+        <p style="color:var(--text-muted); font-size:0.9rem; letter-spacing:2px;">LOADING ASSETS…</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2025 RBLX//STUDIO &nbsp;|&nbsp; <a href="index.html">Home</a> &nbsp;|&nbsp; <a href="https://youtube.com" target="_blank">YouTube</a></p>
+  </footer>
+
+  <!-- AUTH MODAL -->
+  <div class="modal-overlay" id="authModal">
+    <div class="modal">
+      <button class="modal-close" id="modalClose">✕</button>
+      <h2>ACCOUNT ACCESS</h2>
+      <div class="modal-tabs" style="margin-top:16px;">
+        <button class="modal-tab active" id="tabLogin">Sign In</button>
+        <button class="modal-tab" id="tabSignup">Sign Up</button>
+      </div>
+      <div id="loginForm">
+        <div class="form-group"><label>Email</label><input type="email" id="loginEmail" placeholder="your@email.com"/></div>
+        <div class="form-group"><label>Password</label><input type="password" id="loginPassword" placeholder="••••••••"/></div>
+        <button class="form-submit" id="doLogin">Sign In</button>
+        <div class="form-error" id="loginError"></div>
+      </div>
+      <div id="signupForm" style="display:none;">
+        <div class="form-group"><label>Username</label><input type="text" id="signupUsername" placeholder="YourUsername"/></div>
+        <div class="form-group"><label>Email</label><input type="email" id="signupEmail" placeholder="your@email.com"/></div>
+        <div class="form-group"><label>Password</label><input type="password" id="signupPassword" placeholder="Min 6 characters"/></div>
+        <button class="form-submit" id="doSignup">Create Account</button>
+        <div class="form-error" id="signupError"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FIREBASE SDK -->
+  <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore-compat.js"></script>
+  <script src="firebase-config.js"></script>
+  <script>
+    let allAssets = [];
+    let activeFilter = 'all';
+
+    // ── LOAD ASSETS FROM FIRESTORE ──
+    async function loadAssets() {
+      try {
+        const snap = await db.collection('assets').orderBy('createdAt', 'desc').get();
+        allAssets = snap.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+        renderAssets(allAssets);
+      } catch(e) {
+        document.getElementById('assetsGrid').innerHTML = `
+          <div class="empty-state">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M12 9v4m0 4h.01M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
+            </svg>
+            <h3>No Assets Yet</h3>
+            <p style="font-size:0.9rem;">Check back soon or connect Firebase to load assets.</p>
+          </div>`;
+      }
+    }
+
+    function renderAssets(assets) {
+      const grid = document.getElementById('assetsGrid');
+      const search = document.getElementById('searchInput').value.toLowerCase();
+      const filtered = assets.filter(a => {
+        const matchCat = activeFilter === 'all' || a.category === activeFilter;
+        const matchSearch = !search ||
+          a.title.toLowerCase().includes(search) ||
+          (a.description || '').toLowerCase().includes(search);
+        return matchCat && matchSearch;
+      });
+
+      if (!filtered.length) {
+        grid.innerHTML = `
+          <div class="empty-state">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+            </svg>
+            <h3>No Results Found</h3>
+            <p style="font-size:0.9rem;">Try a different search or category.</p>
+          </div>`;
+        return;
+      }
+
+      grid.innerHTML = filtered.map((a, i) => `
+        <div class="asset-card" style="animation-delay:${i * 0.07}s">
+          <div class="asset-media">
+            ${getMediaHTML(a)}
+            <div class="media-badge">${a.category || 'Asset'}</div>
+          </div>
+          <div class="asset-body">
+            <div class="asset-category">${(a.category || 'general').toUpperCase()}</div>
+            <div class="asset-title">${escHtml(a.title)}</div>
+            <div class="asset-desc">${escHtml(a.description || 'No description provided.')}</div>
+            <div class="asset-footer">
+              <div class="asset-meta">${a.downloadCount || 0} downloads</div>
+              ${a.downloadUrl
+                ? `<a class="download-btn" href="${a.downloadUrl}" target="_blank" onclick="countDownload('${a.id}')">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                      <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                      <polyline points="7 10 12 15 17 10"/>
+                      <line x1="12" y1="15" x2="12" y2="3"/>
+                    </svg>
+                    Download
+                  </a>`
+                : `<span style="color:var(--text-dim);font-size:0.8rem;letter-spacing:1px;">COMING SOON</span>`
+              }
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function getMediaHTML(a) {
+      if (a.mediaType === 'video' && a.mediaUrl) {
+        return `<video src="${a.mediaUrl}" muted loop autoplay playsinline></video>`;
+      }
+      if (a.mediaUrl) {
+        return `<img src="${a.mediaUrl}" alt="${escHtml(a.title)}" loading="lazy"/>`;
+      }
+      return `<div class="no-media">No Preview</div>`;
+    }
+
+    function escHtml(str) {
+      if (!str) return '';
+      return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+    }
+
+    async function countDownload(id) {
+      try {
+        await db.collection('assets').doc(id).update({
+          downloadCount: firebase.firestore.FieldValue.increment(1)
+        });
+      } catch(e) {}
+    }
+
+    // ── SEARCH & FILTER ──
+    document.getElementById('searchInput').addEventListener('input', () => renderAssets(allAssets));
+
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        activeFilter = btn.dataset.cat;
+        renderAssets(allAssets);
+      });
+    });
+
+    // ── AUTH ──
+    const modal = document.getElementById('authModal');
+    document.getElementById('loginBtn').onclick = () => openModal('login');
+    document.getElementById('signupBtn').onclick = () => openModal('signup');
+    document.getElementById('modalClose').onclick = () => modal.classList.remove('open');
+    modal.addEventListener('click', e => { if (e.target === modal) modal.classList.remove('open'); });
+
+    function openModal(tab) { modal.classList.add('open'); switchModalTab(tab); }
+
+    document.getElementById('tabLogin').onclick = () => switchModalTab('login');
+    document.getElementById('tabSignup').onclick = () => switchModalTab('signup');
+
+    function switchModalTab(tab) {
+      const isLogin = tab === 'login';
+      document.getElementById('tabLogin').classList.toggle('active', isLogin);
+      document.getElementById('tabSignup').classList.toggle('active', !isLogin);
+      document.getElementById('loginForm').style.display = isLogin ? 'block' : 'none';
+      document.getElementById('signupForm').style.display = isLogin ? 'none' : 'block';
+    }
+
+    document.getElementById('doLogin').onclick = async () => {
+      const email = document.getElementById('loginEmail').value;
+      const pass  = document.getElementById('loginPassword').value;
+      document.getElementById('loginError').textContent = '';
+      try {
+        await auth.signInWithEmailAndPassword(email, pass);
+        modal.classList.remove('open');
+      } catch(e) { document.getElementById('loginError').textContent = e.message; }
+    };
+
+    document.getElementById('doSignup').onclick = async () => {
+      const username = document.getElementById('signupUsername').value.trim();
+      const email    = document.getElementById('signupEmail').value;
+      const pass     = document.getElementById('signupPassword').value;
+      document.getElementById('signupError').textContent = '';
+      if (!username) { document.getElementById('signupError').textContent = 'Username is required.'; return; }
+      try {
+        const cred = await auth.createUserWithEmailAndPassword(email, pass);
+        await db.collection('users').doc(cred.user.uid).set({
+          username, email, createdAt: firebase.firestore.FieldValue.serverTimestamp(), role: 'user'
+        });
+        await cred.user.updateProfile({ displayName: username });
+        modal.classList.remove('open');
+      } catch(e) { document.getElementById('signupError').textContent = e.message; }
+    };
+
+    document.getElementById('logoutBtn').onclick = () => auth.signOut();
+
+    auth.onAuthStateChanged(user => {
+      const loginBtn  = document.getElementById('loginBtn');
+      const signupBtn = document.getElementById('signupBtn');
+      const logoutBtn = document.getElementById('logoutBtn');
+      const userDisp  = document.getElementById('userDisplay');
+      if (user) {
+        loginBtn.style.display = 'none'; signupBtn.style.display = 'none';
+        logoutBtn.style.display = 'block'; userDisp.style.display = 'block';
+        userDisp.textContent = '⬡ ' + (user.displayName || user.email);
+      } else {
+        loginBtn.style.display = 'block'; signupBtn.style.display = 'block';
+        logoutBtn.style.display = 'none'; userDisp.style.display = 'none';
+      }
+    });
+
+    // Start loading
+    loadAssets();
+  </script>
+</body>
+</html>
