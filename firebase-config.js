@@ -5,13 +5,14 @@
 // ============================================================
 
 const firebaseConfig = {
-  apiKey: "YOUR_API_KEY",
-  authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
-  projectId: "YOUR_PROJECT_ID",
-  storageBucket: "YOUR_PROJECT_ID.appspot.com",
-  messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-  appId: "YOUR_APP_ID"
-};
+    apiKey: "AIzaSyDlS-rtXtG0rTKeH3HiYAyhhBjX_Z6HDqk",
+    authDomain: "rblxstudio-7abc8.firebaseapp.com",
+    projectId: "rblxstudio-7abc8",
+    storageBucket: "rblxstudio-7abc8.firebasestorage.app",
+    messagingSenderId: "430844890532",
+    appId: "1:430844890532:web:fc049907a303eb60da8531",
+    measurementId: "G-GPBERVMQL7"
+  };
 
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
